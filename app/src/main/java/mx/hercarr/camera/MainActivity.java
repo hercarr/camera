@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 GlideApp.with(this)
                         .load(photo)
                         .into(imageView);
+            } else if (resultCode == RESULT_CANCELED) {
+                photo.delete();
             }
         }
     }
