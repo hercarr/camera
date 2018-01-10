@@ -36,12 +36,25 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         imageView = findViewById(R.id.imageView);
         button = findViewById(R.id.button);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showCamera();
             }
         });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CAMERA) {
+            if (resultCode == RESULT_OK) {
+                GlideApp.with(this)
+                        .load(photo)
+                        .into(imageView);
+            }
+        }
     }
 
     private void showCamera() {
